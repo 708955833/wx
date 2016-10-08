@@ -7,7 +7,7 @@ use yii\web\Controller;
 
 class WxController extends Controller
 {
-    public $token ='wx';
+    public $token ='wxx';
 
     public function actionIndex()
     {
