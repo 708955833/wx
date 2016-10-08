@@ -11,7 +11,7 @@ class WxController extends Controller
 
     public function actionIndex()
     {
-        $echoStr = $_GET["echostr"];
+        $echoStr = isset($_GET["echostr"])?$_GET["echostr"]:'';
         if($this->checkSignature() && $echoStr){
             echo $echoStr;
             exit;
@@ -99,15 +99,48 @@ class WxController extends Controller
             echo sprintf($template, $toUser, $fromUser, time(), 'news');
 
             //注意：进行多图文发送时，子图文个数不能超过10个
+        }else{
+            switch( trim($postObj->Content) ){
+                case 1:
+                    $content = '您输入的数字是1';
+                    break;
+                case 2:
+                    $content = '您输入的数字是2';
+                    break;
+                case 3:
+                    $content = '您输入的数字是3';
+                    break;
+                case 4:
+                    $content = "<a href='http://www.imooc.com'>慕课</a>";
+                    break;
+                case '英文':
+                    $content = 'imooc is ok';
+                    break;
+            }
+            $template = "<xml>
+<ToUserName><![CDATA[%s]]></ToUserName>
+<FromUserName><![CDATA[%s]]></FromUserName>
+<CreateTime>%s</CreateTime>
+<MsgType><![CDATA[%s]]></MsgType>
+<Content><![CDATA[%s]]></Content>
+</xml>";
+//注意模板中的中括号 不能少 也不能多
+            $fromUser = $postObj->ToUserName;
+            $toUser   = $postObj->FromUserName;
+            $time     = time();
+            // $content  = '18723180099';
+            $msgType  = 'text';
+            echo sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
+
         }
 
 
     }
     private function checkSignature()
     {
-        $signature = $_GET["signature"];
-        $timestamp = $_GET["timestamp"];
-        $nonce = $_GET["nonce"];
+        $signature = isset($_GET["signature"])?$_GET["signature"]:'';
+        $timestamp = isset($_GET["timestamp"])?$_GET["timestamp"]:'';
+        $nonce = isset($_GET["nonce"])?$_GET["nonce"]:'';
 
         $token = $this->token;
         $tmpArr = array($token, $timestamp, $nonce);
