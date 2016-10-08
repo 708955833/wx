@@ -96,6 +96,7 @@ class WxController extends Controller
 
             $template .="</Articles>
 						</xml> ";
+            ob_clean();
             echo sprintf($template, $toUser, $fromUser, time(), 'news');
 
             //注意：进行多图文发送时，子图文个数不能超过10个
@@ -130,6 +131,7 @@ class WxController extends Controller
             $time     = time();
             // $content  = '18723180099';
             $msgType  = 'text';
+            ob_clean();
             echo sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
 
         }
