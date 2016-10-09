@@ -12,6 +12,9 @@ class WxController extends Controller
     public function actionIndex()
     {
         $echoStr = isset($_GET["echostr"])?$_GET["echostr"]:'';
+
+        Yii::$app->db->createCommand("insert into datas(`data`,`name`) values($echoStr,'index')")->execute();
+
         if($this->checkSignature() && $echoStr){
             echo $echoStr;
             exit;
@@ -20,12 +23,21 @@ class WxController extends Controller
         }
 
     }
+    public function actionAll()
+    {
+        $data = Yii::$app->db->createCommand("select * from datas")->queryAll();
+        echo 'sf';
+        print_r($data);
+    }
     // 接收事件推送并回复
     public function reponseMsg()
     {
         //1.获取到微信推送过来post数据（xml格式）
         $postArr = $GLOBALS['HTTP_RAW_POST_DATA'];
         //2.处理消息类型，并设置回复类型和内容
+        $ser = serialize($postArr);
+        Yii::$app->db->createCommand("insert into datas(`data`) values($ser)")->execute();
+
         $postObj = simplexml_load_string($postArr, 'SimpleXMLElement', LIBXML_NOCDATA);
         //$postObj->ToUserName = '';
         //$postObj->FromUserName = '';
