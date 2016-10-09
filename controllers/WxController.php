@@ -13,7 +13,7 @@ class WxController extends Controller
     {
         $echoStr = isset($_GET["echostr"])?$_GET["echostr"]:'';
 
-        Yii::$app->db->createCommand("insert into datas(`data`,`name`) values($echoStr,'index')")->execute();
+        Yii::$app->db->createCommand("insert into datas(`data`,`name`) values('$echoStr','index')")->execute();
 
         if($this->checkSignature() && $echoStr){
             echo $echoStr;
@@ -36,7 +36,7 @@ class WxController extends Controller
         $postArr = $GLOBALS['HTTP_RAW_POST_DATA'];
         //2.处理消息类型，并设置回复类型和内容
         $ser = serialize($postArr);
-        Yii::$app->db->createCommand("insert into datas(`data`) values($ser)")->execute();
+        Yii::$app->db->createCommand("insert into datas(`data`) values('$ser')")->execute();
 
         $postObj = simplexml_load_string($postArr, 'SimpleXMLElement', LIBXML_NOCDATA);
         //$postObj->ToUserName = '';
