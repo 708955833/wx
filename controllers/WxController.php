@@ -39,14 +39,14 @@ class WxController extends Controller
         Yii::$app->db->createCommand("insert into datas(`data`) values('$ser')")->execute();
         if($postArr) {
             $postObj = simplexml_load_string($postArr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            //$postObj->ToUserName = '';
-            //$postObj->FromUserName = '';
-            //$postObj->CreateTime = '';
-            //$postObj->MsgType = '';
-            //$postObj->Event = '';
+//            $postObj->ToUserName = '';
+//            $postObj->FromUserName = '';
+//            $postObj->CreateTime = '';
+//            $postObj->MsgType = '';
+//            $postObj->Event = '';
             // gh_e79a177814ed
             //判断该数据包是否是订阅的事件推送
-            /*        if (strtolower($postObj->MsgType) == 'event') {
+                    if (strtolower($postObj->MsgType) == 'event') {
                         //如果是关注 subscribe 事件
                         if (strtolower($postObj->Event == 'subscribe')) {
                             //回复用户消息(纯文本格式)
@@ -54,7 +54,7 @@ class WxController extends Controller
                             $fromUser = $postObj->ToUserName;
                             $time = time();
                             $msgType = 'text';
-                            $content = '欢迎关注我们的微信公众账号' . $postObj->FromUserName . '-' . $postObj->ToUserName;
+                            $content = '1111欢迎关注我们的微信公众账号' . $postObj->FromUserName . '-' . $postObj->ToUserName;
                             $template = "<xml>
                                         <ToUserName><![CDATA[%s]]></ToUserName>
                                         <FromUserName><![CDATA[%s]]></FromUserName>
@@ -64,8 +64,13 @@ class WxController extends Controller
                                         </xml>";
                             $info = sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
                             echo $info;
+                            exit;
                         }
-                    }*/
+                    }
+
+            exit;
+
+
 //用户发送tuwen1关键字的时候，回复一个单图文
             if (strtolower($postObj->MsgType) == 'text' && trim($postObj->Content) == 'tuwen2') {
                 $toUser = $postObj->FromUserName;
