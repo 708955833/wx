@@ -8,7 +8,7 @@ use yii\web\Controller;
 class WxController extends Controller
 {
     public $token ='wxx';
-
+    public $enableCsrfValidation = false;
     public function actionIndex()
     {
         $echoStr = isset($_GET["echostr"])?$_GET["echostr"]:'';
