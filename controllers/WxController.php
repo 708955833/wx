@@ -70,7 +70,7 @@ class WxController extends Controller
 
 
 //用户发送tuwen1关键字的时候，回复一个单图文
-            if (strtolower($postObj->MsgType) == 'text' && trim($postObj->Content) == '我要支付') {
+            if (strtolower($postObj->MsgType) == 'text' && trim($postObj->Content) == '我要支付1') {
                 $toUser = $postObj->FromUserName;
                 $fromUser = $postObj->ToUserName;
                 $arr = array(
@@ -103,6 +103,24 @@ class WxController extends Controller
                 echo sprintf($template, $toUser, $fromUser, time(), 'news');
 
                 //注意：进行多图文发送时，子图文个数不能超过10个
+            }
+            if (strtolower($postObj->MsgType) == 'text' && trim($postObj->Content) == '我要支付') {
+                $content = '<image src="http://123.206.6.227/xiu.png"/>';
+                $template = "<xml>
+<ToUserName><![CDATA[%s]]></ToUserName>
+<FromUserName><![CDATA[%s]]></FromUserName>
+<CreateTime>%s</CreateTime>
+<MsgType><![CDATA[%s]]></MsgType>
+<Content><![CDATA[%s]]></Content>
+</xml>";
+//注意模板中的中括号 不能少 也不能多
+                $fromUser = $postObj->ToUserName;
+                $toUser = $postObj->FromUserName;
+                $time = time();
+                // $content  = '18723180099';
+                $msgType = 'text';
+                ob_clean();
+                echo sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
             }
             /*else {
                 switch (trim($postObj->Content)) {
