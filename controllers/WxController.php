@@ -68,32 +68,18 @@ class WxController extends Controller
                         }
                     }
 
-            exit;
-
 
 //用户发送tuwen1关键字的时候，回复一个单图文
-            if (strtolower($postObj->MsgType) == 'text' && trim($postObj->Content) == 'tuwen2') {
+            if (strtolower($postObj->MsgType) == 'text' && trim($postObj->Content) == '我要支付') {
                 $toUser = $postObj->FromUserName;
                 $fromUser = $postObj->ToUserName;
                 $arr = array(
                     array(
-                        'title' => 'imooc',
-                        'description' => "imooc is very cool",
-                        'picUrl' => 'http://www.imooc.com/static/img/common/logo.png',
+                        'title' => 'pay',
+                        'description' => "pay",
+                        'picUrl' => 'http://123.206.6.227/xiu.png',
                         'url' => 'http://www.imooc.com',
-                    ),
-                    array(
-                        'title' => 'hao123',
-                        'description' => "hao123 is very cool",
-                        'picUrl' => 'https://www.baidu.com/img/bdlogo.png',
-                        'url' => 'http://www.hao123.com',
-                    ),
-                    array(
-                        'title' => 'qq',
-                        'description' => "qq is very cool",
-                        'picUrl' => 'http://www.imooc.com/static/img/common/logo.png',
-                        'url' => 'http://www.qq.com',
-                    ),
+                    )
                 );
                 $template = "<xml>
 						<ToUserName><![CDATA[%s]]></ToUserName>
