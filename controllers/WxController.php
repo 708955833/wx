@@ -78,7 +78,7 @@ class WxController extends Controller
                         'title' => 'pay',
                         'description' => "pay",
                         'picUrl' => 'http://123.206.6.227/xiu.png',
-                        'url' => 'http://www.imooc.com',
+                        'url' => 'http://123.206.6.227/xiu.png',
                     )
                 );
                 $template = "<xml>
