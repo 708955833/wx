@@ -103,7 +103,8 @@ class WxController extends Controller
                 echo sprintf($template, $toUser, $fromUser, time(), 'news');
 
                 //注意：进行多图文发送时，子图文个数不能超过10个
-            } else {
+            }
+            /*else {
                 switch (trim($postObj->Content)) {
                     case 1:
                         $content = '您输入的数字是1';
@@ -137,7 +138,7 @@ class WxController extends Controller
                 ob_clean();
                 echo sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
 
-            }
+            }*/
         }
 
     }
