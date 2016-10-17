@@ -70,15 +70,15 @@ class WxController extends Controller
 
 
 //用户发送tuwen1关键字的时候，回复一个单图文
-            if (strtolower($postObj->MsgType) == 'text' && trim($postObj->Content) == '我要支付1') {
+            if (strtolower($postObj->MsgType) == 'text' && trim($postObj->Content) == '我要支付') {
                 $toUser = $postObj->FromUserName;
                 $fromUser = $postObj->ToUserName;
                 $arr = array(
                     array(
-                        'title' => 'pay',
+                        'title' => '请点击支付',
                         'description' => "pay",
-                        'picUrl' => 'http://123.206.6.227/xiu.png',
-                        'url' => 'http://123.206.6.227/xiu.png',
+                        'picUrl' => 'http://123.206.6.227/pay.png',
+                        'url' => 'http://123.206.6.227/pay.png',
                     )
                 );
                 $template = "<xml>
