@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Application requirement checker script.
  *
